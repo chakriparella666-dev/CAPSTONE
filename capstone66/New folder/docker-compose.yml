@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./New folder/msme-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - CLIENT_URL=http://localhost:3001
+      - PORT=5000
+    restart: always
+    dns:
+      - 8.8.8.8
+
+
+  frontend:
+    build:
+      context: ./New folder/msme-frontend
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: always
+    dns:
+      - 8.8.8.8

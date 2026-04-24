@@ -15,7 +15,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/chakriparella666-dev/msme.git'
+                    url: 'https://github.com/chakriparella666-dev/CAPSTONE.git'
             }
         }
 
